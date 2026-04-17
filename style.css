@@ -1,0 +1,625 @@
+/* ============================================
+   PRÁCTICAS PHP #21–26 — Estilo Servidor
+   Aesthetic: Brutalist-Tech / Dark Terminal
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  --bg:        #0d0f14;
+  --bg2:       #141720;
+  --bg3:       #1c2030;
+  --border:    #2a2f45;
+  --accent:    #7c6dfa;
+  --accent2:   #4af0c4;
+  --text:      #e8eaf0;
+  --muted:     #6b7280;
+  --danger:    #f87171;
+  --font-head: 'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius:    10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ─── LAYOUT ─── */
+.layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  margin-bottom: 2rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: .65rem;
+  letter-spacing: .12em;
+  color: var(--accent2);
+  border: 1px solid var(--accent2);
+  padding: .15rem .5rem;
+  border-radius: 3px;
+  margin-bottom: .8rem;
+}
+
+.sidebar-header h1 {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.sidebar-header h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.subtitle {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: .4rem;
+}
+
+/* ─── MENU ─── */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  flex: 1;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .65rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: .82rem;
+  transition: all .2s;
+  position: relative;
+}
+
+.menu-item:hover {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.menu-item.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.menu-item.active .num { color: rgba(255,255,255,.7); }
+
+.menu-item .num {
+  font-size: .7rem;
+  color: var(--accent);
+  font-weight: 500;
+  min-width: 28px;
+}
+
+.menu-item.active .num { color: rgba(255,255,255,.7); }
+
+.menu-item .label { flex: 1; }
+
+.menu-item .arrow {
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.menu-item:hover .arrow,
+.menu-item.active .arrow { opacity: 1; }
+
+.sidebar-footer {
+  margin-top: 1.5rem;
+  font-size: .7rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+/* ─── CONTENT ─── */
+.content {
+  flex: 1;
+  padding: 3rem 2.5rem;
+  overflow-y: auto;
+  max-width: 900px;
+}
+
+/* ─── WELCOME ─── */
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.welcome-icon { font-size: 3.5rem; }
+
+.welcome h2 {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.welcome p {
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
+.chips {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: .5rem;
+}
+
+.chips span {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: .3rem .8rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  color: var(--accent2);
+}
+
+/* ─── PRACTICA HEADER ─── */
+.practica-header {
+  margin-bottom: 2rem;
+}
+
+.practica-num {
+  font-size: .72rem;
+  color: var(--accent2);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.practica-header h2 {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: .3rem 0 .5rem;
+  color: var(--text);
+}
+
+.practica-header p {
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.practica-header p em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ─── FORM CARD ─── */
+.form-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-row.three-col { gap: .8rem; }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  flex: 1;
+}
+
+.form-group label {
+  font-size: .75rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  padding: .65rem .9rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.form-group input:focus {
+  border-color: var(--accent);
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .65rem 1.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  font-weight: 500;
+  transition: all .15s;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  width: 100%;
+  font-size: .9rem;
+  padding: .8rem;
+}
+
+.btn-primary:hover {
+  background: #6b5df0;
+  border-color: #6b5df0;
+}
+
+.btn-group {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.btn-op {
+  background: var(--bg3);
+  color: var(--text);
+  flex: 1;
+  min-width: 110px;
+}
+
+.btn-op:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-active {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* ─── RESULT CARD ─── */
+.result-card {
+  background: var(--bg2);
+  border: 1px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn .4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-label {
+  font-size: .72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  display: block;
+  margin-bottom: .6rem;
+}
+
+.result-value {
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.result-value strong {
+  color: var(--accent2);
+  font-size: 1.6rem;
+}
+
+.error-card {
+  border-color: var(--danger);
+  border-left-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ─── PRÁCTICA 22: Fórmula ─── */
+.formula-display {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--accent2);
+  text-align: center;
+  padding: .8rem;
+  background: var(--bg3);
+  border-radius: 6px;
+  margin-bottom: 1.4rem;
+  border: 1px solid var(--border);
+  font-style: italic;
+}
+
+.result-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: .8rem;
+}
+
+.result-item {
+  flex: 1;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.result-item span {
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.result-item strong {
+  font-size: 1.8rem;
+  color: var(--accent2);
+}
+
+/* ─── PRÁCTICA 23: IMC ─── */
+.imc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.imc-value {
+  font-family: var(--font-head);
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.imc-grado {
+  padding: .4rem 1.2rem;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.imc-tabla {
+  width: 100%;
+  max-width: 360px;
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.imc-row {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem .7rem;
+  border-radius: 5px;
+  font-size: .82rem;
+  background: var(--bg3);
+  border-left: 3px solid transparent;
+  color: var(--muted);
+}
+
+.imc-row-active {
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ─── PRÁCTICA 24: Fechas ─── */
+.fecha-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  animation: fadeIn .4s ease;
+}
+
+.fecha-main {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.fecha-highlight {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.fecha-hora {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.fecha-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .7rem;
+  margin-bottom: 1.5rem;
+}
+
+.fecha-info-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .8rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.fecha-info-item span {
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.fecha-info-item strong {
+  font-size: 1rem;
+  color: var(--accent2);
+}
+
+.codigo-php {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+.code-label {
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  display: block;
+  margin-bottom: .7rem;
+}
+
+.codigo-php pre {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: var(--accent2);
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+/* ─── PRÁCTICAS 25/26: Tablas ─── */
+.tablas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  animation: fadeIn .5s ease;
+}
+
+.tabla-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.tabla-card:hover {
+  border-color: var(--accent);
+}
+
+.tabla-title {
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: .9rem;
+  font-weight: 700;
+  padding: .5rem .8rem;
+  text-align: center;
+}
+
+.tabla-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .3rem .8rem;
+  font-size: .8rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.tabla-row:last-child { border-bottom: none; }
+
+.tabla-row strong {
+  color: var(--accent2);
+  font-size: .9rem;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 1.2rem;
+  }
+
+  .menu { flex-direction: row; flex-wrap: wrap; }
+  .menu-item { min-width: calc(50% - .25rem); }
+
+  .content { padding: 1.5rem 1rem; }
+
+  .form-row { flex-direction: column; }
+
+  .fecha-info-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .tablas-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .result-grid { flex-direction: column; }
+}
